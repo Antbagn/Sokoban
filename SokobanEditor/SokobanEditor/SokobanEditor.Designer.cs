@@ -44,6 +44,8 @@
             this.ToolResizeAddCol = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolResizeDelCol = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSave = new System.Windows.Forms.ToolStripButton();
+            this.toolPrev = new System.Windows.Forms.ToolStripButton();
+            this.toolNext = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,7 +136,9 @@
             this.toolUser,
             this.toolStripSeparator1,
             this.toolResize,
-            this.toolSave});
+            this.toolSave,
+            this.toolPrev,
+            this.toolNext});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(593, 39);
@@ -159,28 +163,28 @@
             // ToolResizeAddRow
             // 
             this.ToolResizeAddRow.Name = "ToolResizeAddRow";
-            this.ToolResizeAddRow.Size = new System.Drawing.Size(180, 22);
+            this.ToolResizeAddRow.Size = new System.Drawing.Size(136, 22);
             this.ToolResizeAddRow.Text = "+1 строка";
             this.ToolResizeAddRow.Click += new System.EventHandler(this.ToolResizeAddRow_Click);
             // 
             // ToolResizeDelRow
             // 
             this.ToolResizeDelRow.Name = "ToolResizeDelRow";
-            this.ToolResizeDelRow.Size = new System.Drawing.Size(180, 22);
+            this.ToolResizeDelRow.Size = new System.Drawing.Size(136, 22);
             this.ToolResizeDelRow.Text = "-1 строка";
             this.ToolResizeDelRow.Click += new System.EventHandler(this.ToolResizeDelRow_Click);
             // 
             // ToolResizeAddCol
             // 
             this.ToolResizeAddCol.Name = "ToolResizeAddCol";
-            this.ToolResizeAddCol.Size = new System.Drawing.Size(180, 22);
+            this.ToolResizeAddCol.Size = new System.Drawing.Size(136, 22);
             this.ToolResizeAddCol.Text = "+1 столбец";
             this.ToolResizeAddCol.Click += new System.EventHandler(this.ToolResizeAddCol_Click);
             // 
             // ToolResizeDelCol
             // 
             this.ToolResizeDelCol.Name = "ToolResizeDelCol";
-            this.ToolResizeDelCol.Size = new System.Drawing.Size(180, 22);
+            this.ToolResizeDelCol.Size = new System.Drawing.Size(136, 22);
             this.ToolResizeDelCol.Text = "-1 столбец";
             this.ToolResizeDelCol.Click += new System.EventHandler(this.ToolResizeDelCol_Click);
             // 
@@ -193,6 +197,26 @@
             this.toolSave.Size = new System.Drawing.Size(36, 36);
             this.toolSave.Text = "toolStripButton1";
             this.toolSave.Click += new System.EventHandler(this.ToolSave_Click);
+            // 
+            // toolPrev
+            // 
+            this.toolPrev.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPrev.Image = ((System.Drawing.Image)(resources.GetObject("toolPrev.Image")));
+            this.toolPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPrev.Name = "toolPrev";
+            this.toolPrev.Size = new System.Drawing.Size(36, 36);
+            this.toolPrev.Text = "toolStripButton1";
+            this.toolPrev.Click += new System.EventHandler(this.ToolPrev_Click);
+            // 
+            // toolNext
+            // 
+            this.toolNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolNext.Image = ((System.Drawing.Image)(resources.GetObject("toolNext.Image")));
+            this.toolNext.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolNext.Name = "toolNext";
+            this.toolNext.Size = new System.Drawing.Size(36, 36);
+            this.toolNext.Text = "toolStripButton2";
+            this.toolNext.Click += new System.EventHandler(this.ToolNext_Click);
             // 
             // SokobanEditor
             // 
@@ -230,6 +254,8 @@
         private System.Windows.Forms.ToolStripMenuItem ToolResizeAddCol;
         private System.Windows.Forms.ToolStripMenuItem ToolResizeDelCol;
         private System.Windows.Forms.ToolStripButton toolSave;
+        private System.Windows.Forms.ToolStripButton toolPrev;
+        private System.Windows.Forms.ToolStripButton toolNext;
     }
 }
 

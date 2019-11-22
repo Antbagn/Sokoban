@@ -45,11 +45,7 @@ namespace SokobanEditor
             
             level=new LevelFile("levels.txt");
             CurrentLevel = 1;
-            cell = level.loadLevel(CurrentLevel);
-            widht =cell.GetLength(0);
-            height = cell.GetLength(1);
-            InitPictures();
-            LoadPictures();
+            LoadLevel();
         }
         public void InitPictures()
         {
@@ -228,9 +224,9 @@ namespace SokobanEditor
             if (users == 0) return "Нужно указать начальное место игрока";
             if (users > 1) return "Нужно указать только одного игрока";
             int aboxs = CountItems(Cell.abox);
-            int dones = CountItems(Cell.done);
+            int heres = CountItems(Cell.here);
             if (aboxs == 0) return "Нужно поставить хотябы один ящик";
-            if (aboxs != dones) return "Количество ящиков должно соответствовать количество мест для них";
+            if (aboxs != heres) return "Количество ящиков должно соответствовать количество мест для них";
             return "";
 
         }
@@ -245,6 +241,10 @@ namespace SokobanEditor
 
         private void ToolSave_Click(object sender, EventArgs e)
         {
+            SaveLevel();
+        }
+        private void SaveLevel()
+        { 
             string error = IsGoodLevel();
             if (error != "")
             {
@@ -252,6 +252,32 @@ namespace SokobanEditor
                 return;
             }
             level.SaveLevel(CurrentLevel,cell);
+        }
+
+        private void ToolPrev_Click(object sender, EventArgs e)
+        {
+            if (CurrentLevel > 1)
+            {
+                SaveLevel();
+                CurrentLevel--;
+                LoadLevel();
+            }
+        }
+        private void LoadLevel()
+        {
+            cell = level.loadLevel(CurrentLevel);
+            widht = cell.GetLength(0);
+            height = cell.GetLength(1);
+            panel.Controls.Clear();
+            InitPictures();
+            LoadPictures();
+        }
+
+        private void ToolNext_Click(object sender, EventArgs e)
+        {
+            SaveLevel();
+            CurrentLevel++;
+            LoadLevel();
         }
 
         private void ToolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
