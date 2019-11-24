@@ -47,6 +47,20 @@ namespace SokobanEditor
             CurrentLevel = 1;
             LoadLevel();
         }
+        public void CalcStat()
+        {
+            int boxes = 0;
+            int heres = 0;
+            for(int x=0;x<widht;x++)
+                for(int y = 0; y < height; y++)
+                {
+                    if (cell[x, y] == Cell.abox) boxes++;
+                    if (cell[x, y] == Cell.here) heres++;
+
+                }
+            statAbox.Text = boxes.ToString() + "x";
+            statHere.Text = heres.ToString() + "x";
+        }
         public void InitPictures()
         {
             int bw, bh;
@@ -66,6 +80,7 @@ namespace SokobanEditor
                     picture.Size = new System.Drawing.Size(bw,bh);
                     picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                     picture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseClick);
+                    picture.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDoubleClick);
                     panel.Controls.Add(picture);
                     picture.Tag = new Point(x,y);
                     box[x, y] = picture;
@@ -87,13 +102,20 @@ namespace SokobanEditor
             int x, y;
             x = ((Point)((PictureBox)sender).Tag).X;
             y = ((Point)((PictureBox)sender).Tag).Y;
+            Cell curr = Cell.none;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                ShowCell(x,y,CurrentCell);
+                curr=CurrentCell;
             }
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                ShowCell(x,y,Cell.none);
+                curr=Cell.none;
+            }
+            if (last_mouse_x == -1) ShowCell(x, y, curr);
+            else
+            {
+                ShowRectCell(x, y, curr);
+                
             }
         }
         private void ShowCell(int x,int y,Cell c)
@@ -106,7 +128,27 @@ namespace SokobanEditor
             }
             cell[x, y] = c;
             box[x, y].Image = CellToPicture(c);
-
+            CalcStat();
+        }
+        int last_mouse_x = -1;
+        int last_mouse_y = -1;
+        private void PictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            last_mouse_x = ((Point)((PictureBox)sender).Tag).X;
+            last_mouse_y = ((Point)((PictureBox)sender).Tag).Y;
+        }
+        private void ShowRectCell(int x,int y,Cell curr)
+        {
+            int x1, x2, y1, y2;
+            x1 = Math.Min(x,last_mouse_x);
+            x2 = Math.Max(x, last_mouse_x);
+            y1 = Math.Min(y, last_mouse_y);
+            y2 = Math.Max(y, last_mouse_y);
+            for (int xx = x1; xx <= x2; xx++)
+                for (int yy = y1; yy <= y2; yy++)
+                    ShowCell(xx,yy,curr);
+            last_mouse_x = -1;
+            last_mouse_y = -1;
         }
         private Image CellToPicture(Cell c)
         {
@@ -185,25 +227,7 @@ namespace SokobanEditor
 
         }
 
-        private void ToolResizeAddRow_Click(object sender, EventArgs e)
-        {
-            ResizeLevel(widht,height + 1);
-        }
-
-        private void ToolResizeDelRow_Click(object sender, EventArgs e)
-        {
-            ResizeLevel(widht, height - 1);
-        }
-
-        private void ToolResizeAddCol_Click(object sender, EventArgs e)
-        {
-            ResizeLevel(widht + 1, height);
-        }
-
-        private void ToolResizeDelCol_Click(object sender, EventArgs e)
-        {
-            ResizeLevel(widht - 1, height);
-        }
+        
         private void ResizeLevel(int w,int h)
         {
             if ((w > MaxWidth) || (w < MinWidht) || (h > MaxHeight) || (h < MinHeight)) return;
@@ -268,9 +292,11 @@ namespace SokobanEditor
             cell = level.loadLevel(CurrentLevel);
             widht = cell.GetLength(0);
             height = cell.GetLength(1);
+            toolStripTextBoxLabirintSize.Text = widht.ToString() + "x" + height.ToString();
             panel.Controls.Clear();
             InitPictures();
             LoadPictures();
+            CalcStat();
         }
 
         private void ToolNext_Click(object sender, EventArgs e)
@@ -279,6 +305,23 @@ namespace SokobanEditor
             CurrentLevel++;
             LoadLevel();
         }
+
+        private void ToolStripButtonSetSize_Click(object sender, EventArgs e)
+        {
+            string[] dl = { "x" };
+            string[] dw = toolStripTextBoxLabirintSize.Text.Split(dl,StringSplitOptions.RemoveEmptyEntries);
+            int w = int.Parse(dw[0]);
+            int h = int.Parse(dw[1]);
+            ResizeLevel(w, h);
+
+        }
+
+        private void ToolStripTextBoxLabirintSize_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) ToolStripButtonSetSize_Click(sender, null);
+        }
+
+       
 
         private void ToolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {

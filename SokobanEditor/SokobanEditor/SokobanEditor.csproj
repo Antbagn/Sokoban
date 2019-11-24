@@ -86,6 +86,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="box.ico" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\Prev.png" />
+    <None Include="Resources\Next.png" />
+    <None Include="Resources\grid.png" />
     <None Include="Resources\done.png" />
     <None Include="Resources\abox.png" />
     <None Include="Resources\wall.png" />
