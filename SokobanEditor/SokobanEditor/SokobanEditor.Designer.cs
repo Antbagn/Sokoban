@@ -32,10 +32,10 @@
             this.panel = new System.Windows.Forms.Panel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBoxLabirintSize = new System.Windows.Forms.ToolStripTextBox();
             this.toolWall = new System.Windows.Forms.ToolStripButton();
+            this.statAbox = new System.Windows.Forms.ToolStripLabel();
             this.toolAbox = new System.Windows.Forms.ToolStripButton();
+            this.statHere = new System.Windows.Forms.ToolStripLabel();
             this.toolHere = new System.Windows.Forms.ToolStripButton();
             this.toolDone = new System.Windows.Forms.ToolStripButton();
             this.toolNone = new System.Windows.Forms.ToolStripButton();
@@ -43,9 +43,9 @@
             this.toolSave = new System.Windows.Forms.ToolStripButton();
             this.toolPrev = new System.Windows.Forms.ToolStripButton();
             this.toolNext = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxLabirintSize = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonSetSize = new System.Windows.Forms.ToolStripButton();
-            this.statAbox = new System.Windows.Forms.ToolStripLabel();
-            this.statHere = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,20 +88,6 @@
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolStrip1_ItemClicked);
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(50, 36);
-            this.toolStripLabel1.Text = "Размер:";
-            // 
-            // toolStripTextBoxLabirintSize
-            // 
-            this.toolStripTextBoxLabirintSize.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBoxLabirintSize.Name = "toolStripTextBoxLabirintSize";
-            this.toolStripTextBoxLabirintSize.Size = new System.Drawing.Size(100, 39);
-            this.toolStripTextBoxLabirintSize.ToolTipText = "Размеры лабиринта ШхВ";
-            this.toolStripTextBoxLabirintSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ToolStripTextBoxLabirintSize_KeyDown);
-            // 
             // toolWall
             // 
             this.toolWall.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -113,6 +99,12 @@
             this.toolWall.ToolTipText = "Стена";
             this.toolWall.Click += new System.EventHandler(this.ToolWall_Click);
             // 
+            // statAbox
+            // 
+            this.statAbox.Name = "statAbox";
+            this.statAbox.Size = new System.Drawing.Size(18, 36);
+            this.statAbox.Text = "0x";
+            // 
             // toolAbox
             // 
             this.toolAbox.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -123,6 +115,12 @@
             this.toolAbox.Text = "toolStripButton2";
             this.toolAbox.ToolTipText = "Ящик";
             this.toolAbox.Click += new System.EventHandler(this.ToolAbox_Click);
+            // 
+            // statHere
+            // 
+            this.statHere.Name = "statHere";
+            this.statHere.Size = new System.Drawing.Size(18, 36);
+            this.statHere.Text = "0x";
             // 
             // toolHere
             // 
@@ -173,35 +171,49 @@
             // toolSave
             // 
             this.toolSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSave.Image = global::SokobanEditor.Properties.Resources.Prev;
+            this.toolSave.Image = global::SokobanEditor.Properties.Resources.save;
             this.toolSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolSave.Name = "toolSave";
             this.toolSave.Size = new System.Drawing.Size(36, 36);
             this.toolSave.Text = "toolStripButton1";
-            this.toolSave.ToolTipText = "предидущий уровень";
+            this.toolSave.ToolTipText = "сохранить уровень";
             this.toolSave.Click += new System.EventHandler(this.ToolSave_Click);
             // 
             // toolPrev
             // 
             this.toolPrev.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPrev.Image = global::SokobanEditor.Properties.Resources.Next;
+            this.toolPrev.Image = global::SokobanEditor.Properties.Resources.Prev;
             this.toolPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolPrev.Name = "toolPrev";
             this.toolPrev.Size = new System.Drawing.Size(36, 36);
             this.toolPrev.Text = "toolStripButton1";
-            this.toolPrev.ToolTipText = "следующий уровень";
+            this.toolPrev.ToolTipText = "предидущий уровень";
             this.toolPrev.Click += new System.EventHandler(this.ToolPrev_Click);
             // 
             // toolNext
             // 
             this.toolNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolNext.Image = global::SokobanEditor.Properties.Resources.save;
+            this.toolNext.Image = global::SokobanEditor.Properties.Resources.Next;
             this.toolNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolNext.Name = "toolNext";
             this.toolNext.Size = new System.Drawing.Size(36, 36);
             this.toolNext.Text = "toolStripButton2";
-            this.toolNext.ToolTipText = "сохранить уровень";
+            this.toolNext.ToolTipText = "следующий уровень";
             this.toolNext.Click += new System.EventHandler(this.ToolNext_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(50, 36);
+            this.toolStripLabel1.Text = "Размер:";
+            // 
+            // toolStripTextBoxLabirintSize
+            // 
+            this.toolStripTextBoxLabirintSize.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBoxLabirintSize.Name = "toolStripTextBoxLabirintSize";
+            this.toolStripTextBoxLabirintSize.Size = new System.Drawing.Size(100, 39);
+            this.toolStripTextBoxLabirintSize.ToolTipText = "Размеры лабиринта ШхВ";
+            this.toolStripTextBoxLabirintSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ToolStripTextBoxLabirintSize_KeyDown);
             // 
             // toolStripButtonSetSize
             // 
@@ -213,18 +225,6 @@
             this.toolStripButtonSetSize.Text = "toolStripButton1";
             this.toolStripButtonSetSize.ToolTipText = "Установить размер лабиринта";
             this.toolStripButtonSetSize.Click += new System.EventHandler(this.ToolStripButtonSetSize_Click);
-            // 
-            // statAbox
-            // 
-            this.statAbox.Name = "statAbox";
-            this.statAbox.Size = new System.Drawing.Size(18, 36);
-            this.statAbox.Text = "0x";
-            // 
-            // statHere
-            // 
-            this.statHere.Name = "statHere";
-            this.statHere.Size = new System.Drawing.Size(18, 36);
-            this.statHere.Text = "0x";
             // 
             // SokobanEditor
             // 
