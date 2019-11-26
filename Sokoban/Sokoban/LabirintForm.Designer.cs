@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolNextLevel = new System.Windows.Forms.ToolStrip();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolPrevLevel = new System.Windows.Forms.ToolStripButton();
+            this.toolNextLevel = new System.Windows.Forms.ToolStripButton();
             this.toolLevelText = new System.Windows.Forms.ToolStripLabel();
             this.toolLevel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStatText = new System.Windows.Forms.ToolStripLabel();
             this.toolStat = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolDone = new System.Windows.Forms.ToolStripLabel();
-            this.panel = new System.Windows.Forms.Panel();
-            this.toolPrevLevel = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolRestart = new System.Windows.Forms.ToolStripButton();
-            this.toolNextLevel.SuspendLayout();
+            this.panel = new System.Windows.Forms.Panel();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolNextLevel
+            // toolStrip
             // 
-            this.toolNextLevel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolPrevLevel,
-            this.toolStripButton2,
+            this.toolNextLevel,
             this.toolLevelText,
             this.toolLevel,
             this.toolStripSeparator1,
@@ -56,11 +56,33 @@
             this.toolDone,
             this.toolStripSeparator3,
             this.toolRestart});
-            this.toolNextLevel.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(852, 25);
+            this.toolStrip.TabIndex = 0;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // toolPrevLevel
+            // 
+            this.toolPrevLevel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPrevLevel.Image = global::Sokoban.Properties.Resources.Prev;
+            this.toolPrevLevel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPrevLevel.Name = "toolPrevLevel";
+            this.toolPrevLevel.Size = new System.Drawing.Size(23, 22);
+            this.toolPrevLevel.Text = "toolStripButton1";
+            this.toolPrevLevel.ToolTipText = "на предидущий уровень";
+            this.toolPrevLevel.Click += new System.EventHandler(this.ToolPrevLevel_Click);
+            // 
+            // toolNextLevel
+            // 
+            this.toolNextLevel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolNextLevel.Image = global::Sokoban.Properties.Resources.Next;
+            this.toolNextLevel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolNextLevel.Name = "toolNextLevel";
-            this.toolNextLevel.Size = new System.Drawing.Size(852, 25);
-            this.toolNextLevel.TabIndex = 0;
-            this.toolNextLevel.Text = "toolStrip1";
+            this.toolNextLevel.Size = new System.Drawing.Size(23, 22);
+            this.toolNextLevel.Text = "toolStripButton2";
+            this.toolNextLevel.ToolTipText = "на следующий уровень";
+            this.toolNextLevel.Click += new System.EventHandler(this.toolNextLevel_Click);
             // 
             // toolLevelText
             // 
@@ -91,46 +113,17 @@
             this.toolStat.Size = new System.Drawing.Size(37, 22);
             this.toolStat.Text = "0 из 5";
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolDone
             // 
             this.toolDone.Name = "toolDone";
             this.toolDone.Size = new System.Drawing.Size(106, 22);
             this.toolDone.Text = "Уровень пройден!";
+            this.toolDone.Visible = false;
             // 
-            // panel
+            // toolStripSeparator3
             // 
-            this.panel.BackColor = System.Drawing.Color.White;
-            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel.Location = new System.Drawing.Point(0, 25);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(852, 617);
-            this.panel.TabIndex = 1;
-            // 
-            // toolPrevLevel
-            // 
-            this.toolPrevLevel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPrevLevel.Image = global::Sokoban.Properties.Resources.Prev;
-            this.toolPrevLevel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolPrevLevel.Name = "toolPrevLevel";
-            this.toolPrevLevel.Size = new System.Drawing.Size(23, 22);
-            this.toolPrevLevel.Text = "toolStripButton1";
-            this.toolPrevLevel.ToolTipText = "на предидущий уровень";
-            this.toolPrevLevel.Click += new System.EventHandler(this.ToolPrevLevel_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::Sokoban.Properties.Resources.Next;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
-            this.toolStripButton2.ToolTipText = "на следующий уровень";
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // toolRestart
             // 
@@ -141,6 +134,17 @@
             this.toolRestart.Size = new System.Drawing.Size(23, 22);
             this.toolRestart.Text = "toolStripButton3";
             this.toolRestart.ToolTipText = "переиграть уровень";
+            this.toolRestart.Click += new System.EventHandler(this.ToolRestart_Click);
+            // 
+            // panel
+            // 
+            this.panel.BackColor = System.Drawing.Color.White;
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(0, 25);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(852, 617);
+            this.panel.TabIndex = 1;
+            this.panel.Resize += new System.EventHandler(this.Panel_Resize);
             // 
             // LabirintForm
             // 
@@ -148,12 +152,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 642);
             this.Controls.Add(this.panel);
-            this.Controls.Add(this.toolNextLevel);
+            this.Controls.Add(this.toolStrip);
+            this.KeyPreview = true;
             this.Name = "LabirintForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Лабиринт";
-            this.toolNextLevel.ResumeLayout(false);
-            this.toolNextLevel.PerformLayout();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LabirintForm_KeyDown);
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,10 +167,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolNextLevel;
+        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripLabel toolLevelText;
         private System.Windows.Forms.ToolStripButton toolPrevLevel;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolNextLevel;
         private System.Windows.Forms.ToolStripLabel toolLevel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStatText;

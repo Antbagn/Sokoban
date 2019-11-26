@@ -16,21 +16,33 @@ namespace Sokoban
     {
         int width, height;
         int level_nr;
+        int last_level_nr;
+       
         PictureBox[,] box;
+        Game game;
         public LabirintForm()
         {
             InitializeComponent();
+            last_level_nr = 1;
+            game = new Game(ShowItem, ShowStat);
         }
         public void OpenLevel(int level_nr)
         {
+            if (level_nr > last_level_nr) return;
+            
+
             this.level_nr = level_nr;
-            //load
-            width = 10;
-            height = 8;
+            if(!game.Init(level_nr, out width, out height))
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                return;
+            }
+            //width = 10;
+            //height = 8;
 
             InitPictures();
-            ShowItem(new Place(4, 5), Cell.user);
-            ShowStat(5,5);
+            game.ShowLevel();
+           
         }
         public void InitPictures()
         {
@@ -64,6 +76,12 @@ namespace Sokoban
         {
             toolStat.Text = placed.ToString() + " из " + totals.ToString();
             toolDone.Visible = placed == totals;
+            toolLevel.Text = level_nr.ToString();
+            if (placed == totals)
+            {
+                if (level_nr == last_level_nr)
+                    last_level_nr=level_nr+1;
+            } 
         }
         private Image CellToPicture(Cell c)
         {
@@ -79,11 +97,56 @@ namespace Sokoban
             }
         }
 
+        private void toolNextLevel_Click(object sender, EventArgs e)
+        {
+            OpenLevel(level_nr + 1);
+        }
 
+        private void LabirintForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left: game.Step(-1, 0); break;
+                case Keys.Right: game.Step(1, 0); break;
+                case Keys.Down: game.Step(0, 1); break;
+                case Keys.Up: game.Step(0, -1); break;
+                case Keys.Escape:RestartLevel();break;
+
+            }
+        }
+        private void RestartLevel()
+        {
+            game.Init(level_nr, out width, out height);
+            game.ShowLevel();
+        }
+
+        private void ToolRestart_Click(object sender, EventArgs e)
+        {
+            RestartLevel();
+        }
+
+        private void Panel_Resize(object sender, EventArgs e)
+        {
+            
+            int bw, bh;
+            bw = panel.Width / width;
+            bh = panel.Height / height;
+            if (bw < bh) bh = bw;
+            else bw = bh;
+           
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                {
+                    
+                    box[x,y].Location = new System.Drawing.Point(x * (bw - 1), y * (bh - 1));
+                    box[x,y].Size = new System.Drawing.Size(bw, bh);
+                    
+                }
+        }
 
         private void ToolPrevLevel_Click(object sender, EventArgs e)
         {
-
+            if (level_nr > 1) OpenLevel(level_nr - 1);
         }
     }
 }
